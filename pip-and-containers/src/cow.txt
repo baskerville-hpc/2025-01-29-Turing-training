@@ -1,0 +1,16 @@
+COW say
+tmux new -s mysession
+apptainer pull docker://ghcr.io/apptainer/lolcow
+
+apptainer shell lolcow_latest.sif
+Apptainer lolcow_latest.sif:~> whoami
+
+apptainer exec lolcow_latest.sif cowsay moo
+
+
+#!/bin/bash
+#SBATCH --time=03:15:00          # Run time in hh:mm:ss
+#SBATCH --mem-per-cpu=2096       # Maximum memory required per CPU (in megabytes)
+#SBATCH --job-name=apptainer-test
+ 
+apptainer exec docker://unlhcc/spades spades.py <spades arguments>
