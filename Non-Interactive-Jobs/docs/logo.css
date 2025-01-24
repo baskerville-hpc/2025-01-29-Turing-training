@@ -1,0 +1,14 @@
+.reveal .slide-logo {
+  height: 108px !important;
+  width: 572px!important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+
+#title-slide {
+  background-image: url(Baskerville_logo.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 400px;
+  height: 400px;
+}

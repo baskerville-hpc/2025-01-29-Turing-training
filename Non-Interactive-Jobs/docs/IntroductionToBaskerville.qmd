@@ -1,0 +1,284 @@
+---
+title: "Introduction to Baskerville: Using Slurm"
+author: "James Allsopp and the Baskerville Team"
+format:
+  revealjs:
+    incremental: false
+    theme: moon
+    footer: "Using Slurm"
+    logo: RSG.png
+    css: logo.css
+    fig-cap-location: margin
+    code-line-numbers: true
+    fontsize: 30px
+    width: 1500
+    link-external-icon: true
+    link-external-newwindow: true    
+---
+## Slurm - Simple Linux Uniform Resource Manager
+
++ Used to stop and start non-interactive jobs
++ Log into a login node via SSH
++ Run scripts using **sbatch** command.
++ After a time in the queue, your job starts on a compute node
+
+All of your data and code is available on all nodes.
+
+
+If you want to follow along with any of the examples, you can find them here -
+
+[https://github.com/baskerville-hpc/basicSlurmScripts](https://github.com/baskerville-hpc/basicSlurmScripts){.external}
+
+
+## Simple Slurm script
+
+
+````{.bash  filename="basicSlurm.sh" code-line-numbers="|1|2-4|6-7|9-11"}
+#!/bin/bash
+#SBATCH --qos arc
+#SBATCH --account edmondac-rsg
+#SBATCH --time 1:0:0
+
+module purge
+module load baskerville    #Find more about apps here; https://apps.baskerville.ac.uk/
+
+echo -n "This script is running on "
+hostname
+sleep 10
+````
+
++ If you ever need to find your QoS and account, use the command <br/>
+&nbsp;**my_baskerville**<br/>
+while logged into a Baskerville SSH connection.
++ First seven lines rarely change if you're working on the same project.
++ If you want to comment the **#SBATCH** lines, change to **##SBATCH** .....
++ No Bash commands before or between **#SBATCH** commands, except **#!/bin/bash**
+
+
+
+## Simple Slurm script
+
+````{.bash filename="basicSlurm.sh"}
+#!/bin/bash
+#SBATCH --qos arc
+#SBATCH --account edmondac-rsg
+#SBATCH --time 1:0:0
+
+module purge
+module load baskerville
+
+echo -n "This script is running on "
+hostname
+sleep 10
+````
+
+You can run this script on a compute node using;
+
+```{.bash filename=""}
+sbatch basicSlurm.sh
+```
+
+
+
+## Sbatch outout - Two output files produced; .out and .stats
+
+````{.default filename="slurm-<job id>.out"}
+This script is running on bask-pg0308u24a.cluster.baskerville.ac.uk
+````
+
+<br>
+
+````{.default  filename="slurm-<job id>.stats" code-line-numbers="|3|4|5|6-7|8-9|13|15"}
++--------------------------------------------------------------------------+
+| Job on the Baskerville cluster:
+| Starting at Tue Jul 25 11:32:17 2023 for allsoppj(836257)
+| Identity jobid 474749 jobname basicSlurm.sh
+| Running against project edmondac-rsg and in partition baskerville-a100_40
+| Requested cpu=2,mem=6G,node=1,billing=2 - 01:00:00 walltime
+| Assigned to nodes bask-pg0308u24a
+| Command /bask/homes/a/allsoppj/BaskervilleRemoteDropIn/BasicSlurmFile/basicSlurm.sh
+| WorkDir /bask/homes/a/allsoppj/BaskervilleRemoteDropIn/BasicSlurmFile
++--------------------------------------------------------------------------+
++--------------------------------------------------------------------------+
+| Finished at Tue Jul 25 11:32:37 2023 for allsoppj(836257) on the Baskerville Cluster
+| Required (00:00.689 cputime, 4232K memory used) - 00:00:20 walltime
+| JobState COMPLETING - Reason None
+| Exitcode 0:0
++--------------------------------------------------------------------------+
+````
+
+## Checking on a job
+
+:::: {.columns}
+
+::: {.column width="55%"}
+
++ If you want to see how all of your jobs are doing
+
+````{.default}
+squeue -u <user name>
+OR
+squeue -u $USER
+````
+
++ If you want to see how one particular job is doing
+
+````{.default}
+squeue -j <job id>
+````
+
+<br/>
+For example
+<br/>
+
+````{.default}                                                                 
+[allsoppj@bask-pg0310u18a BasicSlurmFile]$ squeue -j 474735
+    JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+   474735 baskervil basicSlu allsoppj  R       0:09      1 bask-pg0308u24a
+````
+
+:::
+::: {.column width="45%"}
+
+| Code |            |               |
+|------|------------|---------------|
+| PD   | Pending    | All good - waiting for resources before starting|
+| R    | Running    | All good - working away                          |
+| CG   | Completing | All good - finished but some processes still working|
+| C    | Completed  | All good - job successfully finished |
+| F    | Failed     |                                      |
+:::
+::::
+
+
+## Oh no, I've started a job and need to stop it
+
+
+<br/>
+Jobs can be stopped at any time using
+````{.default}
+scancel <job id>
+````
+
+Note the lack of a "-j" for this.
+<br>
+
+<br>
+
+#### Quick tip
+
+
+Store job id in a bash variable directly using:
+
+````{.default}
+job_id = $(sbatch --parsable <slurm file>)
+````
+
+<br/>
+
+## Change job name
+Job name is used throughout slurm, so change it to something more readable than the script name:
+
+````{.bash }
+#SBATCH --job-name "AMoreReadableName"
+````
+
+<br/>
+
+````{.default filename='#SBATCH --job-name "AMoreReadableName"' code-line-numbers="|7"}
+[allsoppj@bask-pg0310u18a BasicSlurmFile]$ cat slurm-474832.out
+
+This script is running on bask-pg0308u24a.cluster.baskerville.ac.uk
+[allsoppj@bask-pg0310u18a BasicSlurmFile]$ cat slurm-474832.stats
+ Job on the Baskerville cluster:
+ Starting at Tue Jul 25 17:37:51 2023 for allsoppj(836257)
+ Identity jobid 474832 jobname AMoreReadableName
+ Running against project edmondac-rsg and in partition baskerville-a100_40
+ Requested cpu=2,mem=6G,node=1,billing=2 - 01:00:00 walltime
+ Assigned to nodes bask-pg0308u24a
+ Command /bask/homes/a/allsoppj/BaskervilleRemoteDropIn/BasicSlurmFile/changeName.sh
+ WorkDir /bask/homes/a/allsoppj/BaskervilleRemoteDropIn/BasicSlurmFile
+
+
+ Finished at Tue Jul 25 17:38:11 2023 for allsoppj(836257) on the Baskerville Cluster
+ Required (00:00.701 cputime, 4236K memory used) - 00:00:19 walltime
+ JobState COMPLETING - Reason None
+ Exitcode 0:0
+````
+
+## Change the hardware you want you job to run on
+<br/>
+Baskerville has two types of GPU,
+
++ **A100-40** (default)
++ **A100-80**
+````{.bash}
+#SBATCH --constraint=a100_80
+````
+
+## Change the number of nodes or GPUs
+<br/>
+````{.bash}
+#SBATCH --gpus 3
+#SBATCH --nodes 1
+````
+Documented in more detail in the [docs.baskerville.ac.uk](docs.baskerville.ac.uk){.external target="_blank"}
+
++ Leave **\-\-cpus-per-gpu=36** . Resources such as CPUs and Memory are allocated per GPU.
++ Adding more than 4 GPUs on a single node will fail.
++ All Compute nodes have 4 GPUs.
+
+## Change location of the output files
+<br/>
+
+````{.bash}
+#SBATCH --output=./output_file/slurm-%A_%a.out
+````
+
+Default option for this is <br/>&nbsp;**slurm-%j.out**
+<br/>
+
+Full list of options at [https://doc.hpc.iter.es/slurm/how_to_slurm_filenamepatterns](https://doc.hpc.iter.es/slurm/how_to_slurm_filenamepatterns){.external}
+
+<br>
+
+Don't try <br>
+**#SBATCH \-\-output $(pwd)/outputfiles/%A_%a.out**
+<br>
+
+Use a template slurm file and substitute values into a new script per job with the **sed** bash command .
+
+## Slurm Arrays - Run many jobs from one Slurm file
+
+<br>
+
+
+````{.bash}
+#SBATCH --array=1-10%2
+````
+
+Adding this will run the script 10 times with 2 jobs running simultaneously
+
+Need to use with environment variables to make it useful.
+
++ **SLURM_JOB_ID**          - Full job number for each array job
++ **SLURM_ARRAY_JOB_ID**    - Job id of the array itself
++ **SLURM_ARRAY_TASK_ID**   - Index of the job in the array, e.g. a value between 1 and 10 from above.
+
+To track these jobs use the **sacct -j &lt;Job id&gt;** command, or the squeue command.
+
+
+## Two questions about Slurm Arrays
+
+
++ How do I give different values to each job?
+  - Use the **SLURM_ARRAY_TASK_ID** as a lookup to the information you want to use.
+
++ How do I make a Slurm array bigger than MaxArraySize?
+  - Set to 4000 on BlueBEAR, defaults to 1001.
+  - Use a script to repeatedly launch a slurm job with an increasing offset each time 1,2,3.....
+     * Slurm scripts can take command line arguments
+     * Add this to **SLURM_ARRAY_TASK_ID** before doing the lookup.
+
+
+Used this approach to run nearly 700,000 jobs in blocks of 4000, 500 at a time.
