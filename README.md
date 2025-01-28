@@ -31,7 +31,7 @@ To be held in Enigma 2.0 and virtually.
 | 12:00 - 13:00 | Lunch                                | –                                                                                               | 1h       | –                |
 | 13:00 - 15:00 | Parallel compute with MPI            | Introduction to MPI and mpi4py and converting gpt2 to use multiple GPUs with MPI                | 2h       | Gavin Yearwood && David Llewellyn-Jones |
 | 15:00 - 15:15 | Coffee                               | -                                                                                               | 15m      | -                |
-| 15:15 - 17:00 | Profiling and optimising ML workloads | Example presented using Nvidia's NSight profiler                                               | 1h45m    | James Biship and Boyko Vodenicharski |
+| 15:15 - 17:00 | Profiling and optimising ML workloads | Introduction to basic ML workflows (training a ViT) on baskerville, with profiling tips and demo of the PyTorch Profiler.     | 1h45m    | James Bishop and Boyko Vodenicharski |
 
 ### 31st January
 
