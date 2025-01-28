@@ -4,7 +4,7 @@
 
 <center><img src="img/logo.png" alt="baskerville-logo" width="200"/></center>
 
-Repository for materials used at the Baskerville Training workshop held for our partners at The Rosalind Franklin Institute and Diamond Light Source.
+Repository for materials used at the Baskerville Training workshop held for our partners at The Alan Turing Institute.
 
 ## :calendar: Schedule
 
