@@ -8,6 +8,8 @@ Repository for materials used at the Baskerville Training workshop held for our 
 
 ## :calendar: Schedule
 
+To be held in Enigma 2.0 and virtually.
+
 ### 29th January
 
 | Time          | Name                                 | Description                                                                                     | Duration | Instructor       |
@@ -34,3 +36,5 @@ Repository for materials used at the Baskerville Training workshop held for our 
 ### 31st January
 
 **09:00 - 12:00** The Baskerville team will be available to assist all HPC queries in the drop-in
+
+Visit the Margaret Hamilton Meeting Room or join virtually.
