@@ -4,9 +4,11 @@
 
 <center><img src="img/logo.png" alt="baskerville-logo" width="200"/></center>
 
-Repository for materials used at the Baskerville Training workshop held for our partners at The Rosalind Franklin Institute and Diamond Light Source.
+Repository for materials used at the Baskerville Training workshop held for our partners at The Alan Turing Institute.
 
 ## :calendar: Schedule
+
+To be held in Enigma 2.0 and virtually.
 
 ### 29th January
 
@@ -34,3 +36,5 @@ Repository for materials used at the Baskerville Training workshop held for our 
 ### 31st January
 
 **09:00 - 12:00** The Baskerville team will be available to assist all HPC queries in the drop-in
+
+Visit the Margaret Hamilton Meeting Room or join virtually.
