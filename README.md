@@ -15,7 +15,7 @@ Repository for materials used at the Baskerville Training workshop held for our 
 | 10:00 - 11:00 | Coffee                               | -                                                                                               | 1h       | -                |
 | 11:00 - 12:00 | Intro to Baskerville HPC             | Introduction to the cluster, how to acknowledge, logging in, architecture & system explaination | 1h       | Gavin Yearwood   |
 | 12:00 - 13:00 | Lunch                                | –                                                                                               | 1h       | –                |
-| 13:30 - 14:00 | Intro to Baskerville Portal          | Baskerville Portal Demo, Tensorboad, JupyterLab and NVDashboard                                 | 1h       | Gavin Yearwood   |
+| 13:00 - 14:00 | Intro to Baskerville Portal          | Baskerville Portal Demo, Tensorboad, JupyterLab and NVDashboard                                 | 1h       | Gavin Yearwood   |
 | 14:00 - 15:15 | Non-Interactive Batch Jobs           | Submitting jobs on Baskerville using `sbatch`                                                   | 1h15m    | Tom Neep         |
 | 15:15 - 15:30 | Coffee                               | -                                                                                               | 15m      | -                |
 | 15:30 - 17:00 | Interactive Jobs and Tmux            | Using `srun` to start interactive jobs and using Tmux                                           | 1h30m    | Gavin Yearwood   |
