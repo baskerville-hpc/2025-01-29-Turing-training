@@ -10,7 +10,7 @@ This activity will cover how to create an interactive job on Baskerville and wil
 - Using `nvidia-smi` to monitor the GPU performance
 - Running an interactive job for x11 fowarding
 
-The presentation for this session can be found here: [Baskerville Interactive Jobs](https://bham-my.sharepoint.com/personal/g_yearwood_bham_ac_uk/_layouts/15/guestaccess.aspx?share=EdJ2j-RLF9lFutsxqTaJqwgBM2ldAFg6S5YWQFEhUAvnoQ&e=njIMh3)
+The presentation for this session can be found here: [Baskerville Interactive Jobs](https://bham-my.sharepoint.com/personal/g_yearwood_bham_ac_uk/_layouts/15/guestaccess.aspx?share=EV-9jfeAsiZLiiSpmfwwx0ABljAHOD7pXVZVATLExuQb3g&e=wkrmW0)
 
 
 ## Resources
