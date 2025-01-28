@@ -10,7 +10,7 @@ This session covers how to navigate and use interactive applications on Baskervi
 - NVDashboard to monitor GPUs
 - using the TensorBoard portal app
 
-The presentation can be found here: [Baskerville Portal](https://bham-my.sharepoint.com/personal/g_yearwood_bham_ac_uk/_layouts/15/guestaccess.aspx?share=EQdvvRe1dn1Nutl6I8xMcWABJOvPmwK1RLY4WoDfkFu_sg&e=ugWtPH)
+The presentation can be found here: [Baskerville Portal](https://bham-my.sharepoint.com/personal/g_yearwood_bham_ac_uk/_layouts/15/guestaccess.aspx?share=ESyyzqHX3BNCpryRu-tiuPYBwiyWHJHyDyYVFnUQ_8zv2A&e=4jIyS6)
 
 ## Resources
 
