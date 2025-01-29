@@ -12,6 +12,8 @@ To be held in Enigma 2.0 and virtually.
 
 ### 29th January
 
+**Zoom Link:** <https://turing-uk.zoom.us/j/94921712203?pwd=UElmL3BxcE01TGZSb3ZNM01NdHk3dz09>
+
 | Time          | Name                                 | Description                                                                                     | Duration | Instructor       |
 | ------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------- | -------- | ---------------- |
 | 10:00 - 11:00 | Coffee                               | -                                                                                               | 1h       | -                |
@@ -24,6 +26,8 @@ To be held in Enigma 2.0 and virtually.
 
 ### 30th January
 
+**Zoom Link:** <https://turing-uk.zoom.us/j/97938960440?pwd=OWZjUGxOUlpyVFUyRnQ2MHNRR1RBQT09>
+
 | Time          | Name                                 | Description                                                                                     | Duration | Instructor       |
 | ------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------- | -------- | ---------------- |
 | 09:00 - 10:30 | Self-installed Software              | Self-installation using pip and miniforge (conda)                                               | 1h30m    | Simon Hartley    |
@@ -34,6 +38,8 @@ To be held in Enigma 2.0 and virtually.
 | 15:15 - 17:00 | Profiling and optimising ML workloads | Example presented using Nvidia's NSight profiler                                               | 1h45m    | James Biship and Boyko Vodenicharski |
 
 ### 31st January
+
+**Zoom Link:** <https://turing-uk.zoom.us/j/96908071754?pwd=vaXGzqbRZ58wiUNpUBZfLzrU9dXkqI.1>
 
 **09:00 - 12:00** The Baskerville team will be available to assist all HPC queries in the drop-in
 
