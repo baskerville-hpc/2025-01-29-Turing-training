@@ -6,7 +6,7 @@ This activity will cover how to create an interactive job on Baskerville and wil
 
 - Learn to use a terminal multiplexer - Tmux
 - Understanding and learning to use `srun`
-- Using CUDA to build and run a CUDA example
+- Using CUDA to build and run a CUDA_Bench example - <https://github.com/hibagus/CUDA_Bench>
 - Using `nvidia-smi` to monitor the GPU performance
 - Running an interactive job for x11 fowarding
 
@@ -16,6 +16,5 @@ The presentation for this session can be found here: [Baskerville Interactive Jo
 ## Resources
 
 - README.md
-- srun_diamond.sh
-- srun_rfi.sh
+- srun_turing.sh
 - gpu_query.sh
