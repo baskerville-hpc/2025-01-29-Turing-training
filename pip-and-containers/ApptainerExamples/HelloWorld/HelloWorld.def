@@ -1,0 +1,8 @@
+Bootstrap: docker
+From: alpine:latest
+
+%post
+    apk add python3
+
+%runscript
+    python3 -c 'print("Hello World! Hello from our custom Singularity image!")'

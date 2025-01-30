@@ -1,0 +1,38 @@
+Bootstrap: docker From: ubuntu:{{ VERSION }} 
+Stage: 
+	build 
+%arguments 
+    VERSION=22.04 
+
+%setup 
+     touch /file1 
+     touch ${APPTAINER_ROOTFS}/file2 
+%files 
+     /file1 
+     /file2 /opt 
+%environment 
+     LISTEN_PORT=54321 
+     LC_ALL=C 
+%post 
+     apt-get update && apt-get install -y netcat
+     NOW=`date` 
+     "export NOW=\"${NOW}\"" >> $APPTAINER_ENVIRONMENT 
+%runscript 
+     "Container was created $NOW" 
+     "Arguments received: $*" 
+     "$@" 
+%startscript 
+nc -lp $LISTEN_PORT 
+
+%test 
+     grep -q NAME=\"Ubuntu\" /etc/os-release
+     if [ $? -eq 0 ]; then 
+        "Container base is Ubuntu as expected." 
+     else 
+         "Container base is not Ubuntu." exit 1
+     fi 
+%labels 
+    Author myuser@example.com Version v0.0.1 
+%help 
+    This is a demo container used to illustrate a def file
+    that uses all supported sections. 

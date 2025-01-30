@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Copyright 2023 University of Birmingham, ResearchSoftwareGroup 
-#    v0.1 by Simon Hartley
+ 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -20,8 +20,7 @@ set -e
 # move to dir which this script is in: 
 cd "${0%/*}"
 
-PROJECTROOT=$(pwd)
-export PROJECTROOT
+export PROJECTROOT=$(pwd)
 
 #colours for the terminal
 export RED='\e[38;5;198m'
@@ -37,10 +36,10 @@ venv_name="venv_DeepCell"
 episode_max=100
 steps_episode_max=300
 del_env='N'
-data_dir="${PROJECTROOT}/data/"    
+data_dir="${PROJECTROOT}/apps/${venv_name}/lib64/python3.10/site-packages/demoland_engine/data/"    
 
 #######################################
-# Load Slurm modules from Baskerville 
+# Load slurm modules from Baskerville 
 # GLOBALS:
 #   RED, RED_END, NOCOLOR
 # ARGUMENTS:
@@ -85,10 +84,9 @@ function Bask_make_venv_DeepCell(){
 
  
     pip install torchsummary
-    pip install DeepCell
 
     source "${PROJECTROOT}/apps/${venv_name}/bin/activate" deactivate
-    echo -e "1.1b ${RED}Bask_make_venv_DeepCell:${RED_END} done"
+    echo -e "1.1b ${RED}Bask_make_venv_landuse:${RED_END} done"
 }
 
 #######################################
@@ -108,8 +106,6 @@ function test_venv_DeepCell(){
     python -c "import sklearn; print(sklearn.__version__)"
     echo -e "test pandas version:"
     python -c "import pandas; print(pandas.__version__)"
-    echo -e "test deepcell version"
-    python -c "import deepcell"
     source "${PROJECTROOT}/apps/${venv_name}/bin/activate" deactivate
     echo -e "1.1c ${RED}test_venv_DeepCell:${RED_END} done"
 }
@@ -194,24 +190,24 @@ function call_python() {
 ####################################### 
 function main() {
 
-    echo "odir->${odir}"
-    echo "venv_name->${venv_name}"
-    echo "save_freq->${save_freq}"
-    echo "episode_max->${episode_max}"
-    echo "del_env->${del_env}"
-    echo "data_dir->${data_dir}" 
-    echo "steps_episode_max->${steps_episode_max}"
+    echo "odir->"${odir}
+    echo "venv_name->"${venv_name}
+    echo "save_freq->"${save_freq}
+    echo "episode_max->"${episode_max}
+    echo "del_env->"${del_env}
+    echo "data_dir->"${data_dir} 
+    echo "steps_episode_max->"${steps_episode_max}
 
     # make the output folder
     if [[ ! -e $odir ]]; then
-      mkdir -p "${odir}"
+      mkdir -p ${odir}
     elif [[ ! -d $odir ]]; then
       echo "$odir already exists but is not a directory"
       exit_abnormal
     fi
 
     
-    start='date -u +%s'
+    start=`date -u +%s`
     Bask_load_modules_DeepCell
     ACTFILE="${PROJECTROOT}/apps/${venv_name}/bin/activate"
     if test -f "$ACTFILE"; then
@@ -223,17 +219,15 @@ function main() {
     test_venv_DeepCell
     
     #***********************************************************************
-    # Do Python AI training and work
+    # Do training and work
     call_python
     #***********************************************************************
-
     if [[ $del_env =~ ^[Yy]$ ]]
         then
         # do rm of env folder
         clean
     fi; 
-  
-    end='date -u +%s'
+    end=`date -u +%s`
 
     runtime=$(date -u -d "0 $end seconds - $start seconds" +"%H:%M:%S")
   
@@ -251,35 +245,35 @@ function main() {
 
 while getopts ":o:s:e:p:d:r:" opt; do
   case $opt in
-    o) odir=${OPTARG%/}; ;;                                                 # Remove trailing slash if present
+    o) odir=${OPTARG%/}; ;;  # Remove trailing slash if present
     e) venv_name=$OPTARG;      ;;    
     d) del_env=$OPTARG;      ;;  
     s) 
-      save_freq=$OPTARG                                                     # Set $checkpoints to specified value.
-      re_isanum='^[0-9]+$'                                                  # Regex: match whole numbers only
-      if ! [[ ${save_freq} =~ $re_isanum ]] ; then                          # if $checkpoints not whole:
+      save_freq=$OPTARG                     # Set $checkpoints to specified value.
+      re_isanum='^[0-9]+$'                    # Regex: match whole numbers only
+      if ! [[ $save_freq =~ $re_isanum ]] ; then   # if $checkpoints not whole:
         echo "Error: checkpoints must be a positive, whole number."
-        exit_abnormal                                                       # Exit abnormally.
+        exit_abnormal                     # Exit abnormally.
       fi;      ;; 
     p)  
-      episode_max=$OPTARG                                                   # Set $episode_max to specified value.
-      re_isanum='^[0-9]+$'                                                  # Regex: match whole numbers only
-      if ! [[ $episode_max =~ $re_isanum ]] ; then                          # if $episode_max not whole:
+      episode_max=$OPTARG                                     # Set $episode_max to specified value.
+      re_isanum='^[0-9]+$'                                    # Regex: match whole numbers only
+      if ! [[ $episode_max =~ $re_isanum ]] ; then            # if $episode_max not whole:
         echo "Error: episode_max must be a positive, whole number."
-        exit_abnormal                                                       # Exit abnormally.
-      elif [ "$episode_max" -eq "0" ]; then                                 # If it's zero:
+        exit_abnormal                                         # Exit abnormally.
+      elif [ $episode_max -eq "0" ]; then                     # If it's zero:
         echo "Error: episode_max must be greater than zero."
-        exit_abnormal                     # Exit abnormally.
+      exit_abnormal                     # Exit abnormally.
       fi;      ;;
     r)
-      steps_episode_max=$OPTARG                                             # Set $steps_episode_max to specified value.
-      re_isanum='^[0-9]+$'                                                  # Regex: match whole numbers only
-      if ! [[ ${steps_episode_max} =~ $re_isanum ]] ; then                  # if $steps_episode_max not whole:
+      steps_episode_max=$OPTARG                                           # Set $steps_episode_max to specified value.
+      re_isanum='^[0-9]+$'                                                # Regex: match whole numbers only
+      if ! [[ $steps_episode_max =~ $re_isanum ]] ; then                  # if $steps_episode_max not whole:
         echo "Error: steps_episode_max must be a positive, whole number."
-        exit_abnormal                                                       # Exit abnormally.
-      elif [ "${steps_episode_max}" -eq "0" ]; then                         # If it's zero:
+        exit_abnormal                                                     # Exit abnormally.
+      elif [ $steps_episode_max -eq "0" ]; then                           # If it's zero:
         echo "Error: steps_episode_max must be greater than zero."
-        exit_abnormal                                                       # Exit abnormally.
+      exit_abnormal                     # Exit abnormally.
       fi;      ;;
     \?) echo "Error: invalid option: -$OPTARG"; exit_abnormal          ;;
     :)  echo "Error: option -$OPTARG requires an argument"; exit 1 ;;
@@ -295,3 +289,5 @@ main
 #######################################
 
 exit 0                                    # Exit normally.
+
+ 

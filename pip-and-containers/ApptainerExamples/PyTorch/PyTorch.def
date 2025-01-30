@@ -1,0 +1,17 @@
+Bootstrap: docker
+From: debian:stable-slim
+
+%post 
+    #Not possible to install nvidia-cuda-toolkit as tzdata is brought in whihc require ncurses menu
+    #pip hangson downloading the whl so trying -no-cahce-dir
+    DEBIAN_FRONTEND=noninteractive apt-get update
+    DEBIAN_FRONTEND=noninteractive apt search python
+    DEBIAN_FRONTEND=noninteractive apt-get install -y python3 pip
+    DEBIAN_FRONTEND=noninteractive pip3 install --no-cache-dir --verbose torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+%runscript
+    python3 -c 'print("Trying to find cuda versions from within a Apptainer container.")'
+    nvidia-smi
+    python3 testPyTorch.py
+
+   
+         

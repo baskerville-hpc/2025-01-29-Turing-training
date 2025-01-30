@@ -1,0 +1,26 @@
+name: /bask/projects/v/vjgo8416-training/wongj/conda_envs/env_data_engineering
+channels:
+  - conda-forge
+dependencies:
+  - conda-forge::nbformat
+  - python=3.8
+  - anaconda::ipykernel
+  - anaconda::graphviz
+  - rapidsai::cudf=22.02
+  - conda-forge::panel
+  - plotly=5.13.0
+  - nvidia::cudatoolkit=11.5
+  - anaconda::ipywidgets
+  - conda-forge::jupyter-dash
+  - conda-forge::dask-cuda
+  - rapidsai::cuml=22.02
+  - numpy=1.20.2
+  - dash-daq
+  - dash-html-components
+  - dash-core-components
+  - jupyter-server-proxy
+  - jupyterlab
+  - psutil
+  - requests
+  - python-kaleido
+prefix: /bask/projects/v/vjgo8416-training/wongj/conda_envs/env_data_engineering

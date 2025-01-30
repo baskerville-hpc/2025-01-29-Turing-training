@@ -1,0 +1,30 @@
+Bootstrap: docker
+From: debian:stable-slim
+
+%post 
+    #Not possible to install nvidia-cuda-toolkit as tzdata is brought in whihc require ncurses menu
+    DEBIAN_FRONTEND=noninteractive apt-get update
+    DEBIAN_FRONTEND=noninteractive apt search python
+    DEBIAN_FRONTEND=noninteractive apt-get install -y python3
+
+%runscript
+    python3 -c 'print("Trying to find cuda versions from within a Apptainer container.")'
+    nvidia-smi
+    /bask/apps/live/EL8-ice/software/CUDA/bin/nvcc --version
+    lsmod
+
+
+#Bootstrap: docker
+#From: ubuntu:22.10
+
+#%post 
+    #I cheated and ran nvidia-smi outside container to work out the driver version (470) I needed. nvidia-utils is just a virtual package. nvidia-settings didn't work. You may need to check this 
+#    apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends python3 nvidia-cuda-toolkit nvidia-utils-470 libnvidia-compute-470
+
+#%runscript
+#    python3 -c 'print("Trying to find cuda versions from within a Apptainer container.")'
+#    nvidia-settings -q NvidiaDriverVersion
+#    nvidia-smi
+#    nvcc --version
+   
+         
