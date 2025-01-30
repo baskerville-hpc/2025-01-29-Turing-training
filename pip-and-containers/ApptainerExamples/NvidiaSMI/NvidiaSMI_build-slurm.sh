@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#SBATCH --account=<account name>
-#SBATCH --qos=<qos>
+#SBATCH --account vjgo8416-training25
+#SBATCH --qos turing
 #SBATCH --time 0:00:30  # Time assigned for the simulation
 #SBATCH --nodes 1  # Normally set to 1 unless your job requires multi-node, multi-GPU
 #SBATCH --gpus 1  # Resource allocation on Baskerville is primarily based on GPU requirement

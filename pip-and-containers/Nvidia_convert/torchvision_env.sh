@@ -6,9 +6,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
  
 
  module load bask-apps/live
- module load OpenMPI/4.1.5-GCC-12.3.0
- module load bask-apps/live
- module load OpenMPI/4.1.5-GCC-12.3.0
+ module load OpenMPI/4.1.5-GCC-12.3.0 
  module load NCCL/2.18.3-GCCcore-12.3.0-CUDA-12.1.1
  module load Python/3.11.3-GCCcore-12.3.0
  python -m venv hug_env

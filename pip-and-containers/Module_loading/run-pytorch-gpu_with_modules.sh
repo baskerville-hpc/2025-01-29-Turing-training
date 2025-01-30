@@ -11,8 +11,8 @@
 module purge
 module load baskerville
 module load bask-apps/live/live
-module load Python/3.10.8-GCCcore-12.2.0
-module load PyTorch/2.1.2-foss-2022b-CUDA-11.8.0
+module load bask-apps/live
+module load PyTorch/2.1.2-foss-2023a-CUDA-12.1.1
 
 #added -u to flush output to buffer.
 python -u pytorch-gpu.py

@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH --qos arc
-#SBATCH --account edmondac-rsg
+#SBATCH --account vjgo8416-training25
+#SBATCH --qos turing
 #SBATCH --time 10:00
 #SBATCH --nodes 1
 #SBATCH --gpus 1
