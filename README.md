@@ -12,7 +12,6 @@ To be held in Enigma 2.0 and virtually.
 
 ### 29th January
 
-**Zoom Link:** <https://turing-uk.zoom.us/j/94921712203?pwd=UElmL3BxcE01TGZSb3ZNM01NdHk3dz09>
 
 | Time          | Name                                 | Description                                                                                     | Duration | Instructor       |
 | ------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------- | -------- | ---------------- |
@@ -26,7 +25,6 @@ To be held in Enigma 2.0 and virtually.
 
 ### 30th January
 
-**Zoom Link:** <https://turing-uk.zoom.us/j/97938960440?pwd=OWZjUGxOUlpyVFUyRnQ2MHNRR1RBQT09>
 
 | Time          | Name                                 | Description                                                                                     | Duration | Instructor       |
 | ------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------- | -------- | ---------------- |
@@ -39,7 +37,6 @@ To be held in Enigma 2.0 and virtually.
 
 ### 31st January
 
-**Zoom Link:** <https://turing-uk.zoom.us/j/96908071754?pwd=vaXGzqbRZ58wiUNpUBZfLzrU9dXkqI.1>
 
 **09:00 - 12:00** The Baskerville team will be available to assist all HPC queries in the drop-in
 
